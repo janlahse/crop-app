@@ -5,7 +5,7 @@ export const crops = [
     compost: 0,
     manure: 0,
     seasons: [],
-    icon: '/public/crop_icons/empty.png',
+    icon: '/crop_icons/empty.png',
   },
   {
     name: 'Toma Root',
@@ -13,7 +13,7 @@ export const crops = [
     compost: -2,
     manure: 4,
     seasons: ['Autumn', 'Spring', 'Summer'],
-    icon: '/public/crop_icons/tomaroot.png',
+    icon: '/crop_icons/tomaroot.png',
   },
   {
     name: 'Eggplant',
@@ -21,7 +21,7 @@ export const crops = [
     compost: 2,
     manure: -4,
     seasons: ['Autumn', 'Spring'],
-    icon: '/public/crop_icons/eggplant.png',
+    icon: '/crop_icons/eggplant.png',
   },
   {
     name: 'Potato',
@@ -29,7 +29,7 @@ export const crops = [
     compost: 2,
     manure: -4,
     seasons: ['Autumn', 'Winter', 'Spring'],
-    icon: '/public/crop_icons/potato.png',
+    icon: '/crop_icons/potato.png',
   },
   {
     name: 'Dragonfruit',
@@ -37,7 +37,7 @@ export const crops = [
     compost: 4,
     manure: -8,
     seasons: ['Spring', 'Summer'],
-    icon: '/public/crop_icons/dragonfruit.png',
+    icon: '/crop_icons/dragonfruit.png',
   },
   {
     name: 'Pepper',
@@ -45,7 +45,7 @@ export const crops = [
     compost: 4,
     manure: -8,
     seasons: ['Autumn', 'Summer'],
-    icon: '/public/crop_icons/pepper.png',
+    icon: '/crop_icons/pepper.png',
   },
   {
     name: 'Carrot',
@@ -53,7 +53,7 @@ export const crops = [
     compost: 2,
     manure: 2,
     seasons: ['Autumn', 'Winter', 'Spring'],
-    icon: '/public/crop_icons/carrot.png',
+    icon: '/crop_icons/carrot.png',
   },
   {
     name: 'Pumpkin',
@@ -61,7 +61,7 @@ export const crops = [
     compost: 2,
     manure: 2,
     seasons: ['Autumn', 'Winter'],
-    icon: '/public/crop_icons/pumpkin.png',
+    icon: '/crop_icons/pumpkin.png',
   },
   {
     name: 'Onion',
@@ -69,7 +69,7 @@ export const crops = [
     compost: 4,
     manure: 4,
     seasons: ['Autumn', 'Spring', 'Summer'],
-    icon: '/public/crop_icons/onion.png',
+    icon: '/crop_icons/onion.png',
   },
   {
     name: 'Pomegranate',
@@ -77,7 +77,7 @@ export const crops = [
     compost: 4,
     manure: 4,
     seasons: ['Spring', 'Summer'],
-    icon: '/public/crop_icons/pomegranate.png',
+    icon: '/crop_icons/pomegranate.png',
   },
   {
     name: 'Aspargus',
@@ -85,7 +85,7 @@ export const crops = [
     compost: -4,
     manure: 2,
     seasons: ['Winter', 'Spring'],
-    icon: '/public/crop_icons/aspargus.png',
+    icon: '/crop_icons/aspargus.png',
   },
   {
     name: 'Corn',
@@ -93,7 +93,7 @@ export const crops = [
     compost: -4,
     manure: 2,
     seasons: ['Autumn', 'Spring', 'Summer'],
-    icon: '/public/crop_icons/corn.png',
+    icon: '/crop_icons/corn.png',
   },
   {
     name: 'Durian',
@@ -101,7 +101,7 @@ export const crops = [
     compost: -8,
     manure: 4,
     seasons: ['Spring'],
-    icon: '/public/crop_icons/durian.png',
+    icon: '/crop_icons/durian.png',
   },
   {
     name: 'Garlic',
@@ -109,7 +109,7 @@ export const crops = [
     compost: -8,
     manure: 4,
     seasons: ['Autumn', 'Winter', 'Spring', 'Summer'],
-    icon: '/public/crop_icons/garlic.png',
+    icon: '/crop_icons/garlic.png',
   },
   {
     name: 'Watermelon',
@@ -117,7 +117,7 @@ export const crops = [
     compost: -2,
     manure: -2,
     seasons: ['Spring', 'Summer'],
-    icon: '/public/crop_icons/watermelon.png',
+    icon: '/crop_icons/watermelon.png',
   },
 ]
 
