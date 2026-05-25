@@ -3,12 +3,12 @@ import { ref } from 'vue'
 import SeasonMenu from './components/SeasonMenu.vue'
 import FarmingPlot from './components/FarmingPlot.vue'
 import { crops } from './scripts/data.js'
-import { findCombinations } from './scripts/functions.js'
+import { findCombinations, checkSeason } from './scripts/functions.js'
 
 const season = ref('Autumn')
 const comboLengths = ref([2, 9])
 
-console.log(findCombinations(2, 5, 'Autumn'))
+//console.log(findCombinations(2, 5, 'Autumn').filter((combo) => checkSeason(combo, season)))
 </script>
 
 <template>
@@ -41,7 +41,7 @@ console.log(findCombinations(2, 5, 'Autumn'))
           <td>{{ crop.growth }}</td>
           <td>{{ crop.compost }}</td>
           <td>{{ crop.manure }}</td>
-          <td>{{ crop.seasons.join(", ") }}</td>
+          <td>{{ crop.seasons.join(', ') }}</td>
         </tr>
       </tbody>
     </table>

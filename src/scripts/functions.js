@@ -14,7 +14,7 @@ function checkSustainable(combo) {
   return !(nutrients.growth < 0 || nutrients.compost < 0 || nutrients.manure < 0)
 }
 
-function checkSeason(combo, season) {
+export function checkSeason(combo, season) {
   let isSameSeason = true
   combo.forEach((crop) => {
     if (!crop.seasons.includes(season)) isSameSeason = false
@@ -78,27 +78,28 @@ function removeDuplicates(comboList) {
 
 export function findCombinations(lengthMin, lengthMax, season) {
   // source: https://stackoverflow.com/questions/32543936/combination-with-repetition
-  let output = []
+  let results = []
 
   for (let l = lengthMin; l <= lengthMax; l++) {
     if (l === void 0) l = crops.length // Length of the combinations
-    let data = Array(l), // Used to store state
-      results = [] // Array of results
-    ;(function f(pos, start) {
-      // Recursive function
-      if (pos === l) {
-        // End reached
-        results.push(data.slice()) // Add a copy of data to results
+    let data = Array(l); // Used to store state
+
+    (function f(pos, start) { // Recursive function
+      if (pos === l) { // End reached
+        let outputCombo = data.slice();
+        if (checkSustainable(outputCombo)) { //only adds sustainable combos
+          results.push(outputCombo) // Add a copy of data to results
+        }
         return
       }
+
       for (let i = start; i < crops.length; ++i) {
         data[pos] = crops[i] // Update data
         f(pos + 1, i) // Call f recursively
       }
     })(0, 0) // Start at index 0
-    results = results.filter((combo) => checkSustainable(combo)) // Filter for sustainability
-    results = results.filter((combo) => checkSeason(combo, season)) // Filter for season
-    output = [...output, ...results]
   }
-  return removeDuplicates(output) // Return results
+
+  results = results.filter((combo) => checkSeason(combo, season)) // Filter for season
+  return removeDuplicates(results) // Return results
 }
