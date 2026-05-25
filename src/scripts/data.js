@@ -1,13 +1,5 @@
 export const crops = [
   {
-    name: 'No Crop',
-    growth: 0,
-    compost: 0,
-    manure: 0,
-    seasons: [],
-    icon: '/crop_icons/empty.png',
-  },
-  {
     name: 'Toma Root',
     growth: -2,
     compost: -2,
@@ -121,6 +113,7 @@ export const crops = [
   },
 ]
 
+/*
 export const exampleCombo = [
   crops[1],
   crops[1],
@@ -133,3 +126,4 @@ export const exampleCombo = [
   crops[2],
   crops[2],
 ]
+*/
