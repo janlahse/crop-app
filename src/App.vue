@@ -41,7 +41,7 @@ console.log(findCombinations(2, 5, 'Autumn'))
           <td>{{ crop.growth }}</td>
           <td>{{ crop.compost }}</td>
           <td>{{ crop.manure }}</td>
-          <td>{{ crop.seasons }}</td>
+          <td>{{ crop.seasons.join(", ") }}</td>
         </tr>
       </tbody>
     </table>

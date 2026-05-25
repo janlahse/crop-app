@@ -113,7 +113,6 @@ export const crops = [
   },
 ]
 
-/*
 export const exampleCombo = [
   crops[1],
   crops[1],
@@ -126,4 +125,3 @@ export const exampleCombo = [
   crops[2],
   crops[2],
 ]
-*/

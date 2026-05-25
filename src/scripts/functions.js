@@ -11,7 +11,7 @@ function addNutrients(combo) {
 
 function checkSustainable(combo) {
   const nutrients = addNutrients(combo)
-  return nutrients.growth < 0 || nutrients.compost < 0 || nutrients.manure < 0 ? false : true
+  return !(nutrients.growth < 0 || nutrients.compost < 0 || nutrients.manure < 0)
 }
 
 function checkSeason(combo, season) {
@@ -82,7 +82,7 @@ export function findCombinations(lengthMin, lengthMax, season) {
 
   for (let l = lengthMin; l <= lengthMax; l++) {
     if (l === void 0) l = crops.length // Length of the combinations
-    var data = Array(l), // Used to store state
+    let data = Array(l), // Used to store state
       results = [] // Array of results
     ;(function f(pos, start) {
       // Recursive function
@@ -91,7 +91,7 @@ export function findCombinations(lengthMin, lengthMax, season) {
         results.push(data.slice()) // Add a copy of data to results
         return
       }
-      for (var i = start; i < crops.length; ++i) {
+      for (let i = start; i < crops.length; ++i) {
         data[pos] = crops[i] // Update data
         f(pos + 1, i) // Call f recursively
       }
