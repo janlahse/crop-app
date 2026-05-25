@@ -1,7 +1,7 @@
 <script setup>
-const props = defineProps(['currentSeason'])
-
+const props = defineProps(['currentSeasons'])
 const seasons = ['Autumn', 'Winter', 'Spring', 'Summer']
+
 </script>
 
 <template>
@@ -9,8 +9,8 @@ const seasons = ['Autumn', 'Winter', 'Spring', 'Summer']
     <button
       v-for="season in seasons"
       :key="season"
-      :class="season === props.currentSeason && 'active'"
-      @click="$emit('changeSeason', season)"
+      :class="seasons === props.seasons && 'active'"
+      @click="$emit('clickSeason', season)"
     >
       {{ season }}
     </button>

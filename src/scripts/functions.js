@@ -14,12 +14,14 @@ function checkSustainable(combo) {
   return !(nutrients.growth < 0 || nutrients.compost < 0 || nutrients.manure < 0)
 }
 
-export function checkSeason(combo, season) {
-  let isSameSeason = true
+function checkSeasons(combo, seasons) {
+  let isSameSeasons = true
   combo.forEach((crop) => {
-    if (!crop.seasons.includes(season)) isSameSeason = false
+    seasons.forEach((season) => {
+      if (!crop.seasons.includes(season)) isSameSeasons = false
+    })
   })
-  return isSameSeason
+  return isSameSeasons
 }
 
 function gcd() {
@@ -76,8 +78,8 @@ function removeDuplicates(comboList) {
   return comboList
 }
 
-export function filterSeason(comboList, season) {
-  return comboList.filter((combo) => checkSeason(combo, season)) // Filter for season
+export function filterSeason(comboList, seasons) {
+  return comboList.filter((combo) => checkSeasons(combo, seasons)) // Filter for season
 }
 
 // deprecated after saving all season-specific combos in a file

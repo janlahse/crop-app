@@ -6,18 +6,27 @@ import { crops } from './scripts/data.js'
 import { allCombos } from './scripts/allCombos.js'
 import { filterSeason } from './scripts/functions.js'
 
-const season = ref('Autumn')
+const seasons = ref(['Autumn'])
+
+function changeSeasons(clickedSeason) {
+  /*
+     - wenn seasons.value.contains clickedSeason: entferne clickedSeasson aus seasons.value
+     - wenn nicht: füge clickedSeason hinzu
+ */
+
+}
+
 </script>
 
 <template>
   <main>
     <h1>Crop App</h1>
 
-    <SeasonMenu :currentSeason="season" @changeSeason="(newSeason) => (season = newSeason)" />
+    <SeasonMenu :currentSeasons="seasons" @clickSeason="(season) => changeSeasons(season)" />
 
     <div>
       <FarmingPlot
-        v-for="(combo, index) in filterSeason(allCombos, season)"
+        v-for="(combo, index) in filterSeason(allCombos, seasons)"
         :key="index"
         :combo="combo"
       />
