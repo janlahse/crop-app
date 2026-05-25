@@ -4,12 +4,9 @@ import SeasonMenu from './components/SeasonMenu.vue'
 import FarmingPlot from './components/FarmingPlot.vue'
 import { crops } from './scripts/data.js'
 import { allCombos } from './scripts/allCombos.js'
-import { findCombinations, filterSeason } from './scripts/functions.js'
+import { filterSeason } from './scripts/functions.js'
 
 const season = ref('Autumn')
-const comboLengths = ref([2, 9])
-
-//console.log(findCombinations(...comboLengths.value))
 </script>
 
 <template>

@@ -80,6 +80,7 @@ export function filterSeason(comboList, season) {
   return comboList.filter((combo) => checkSeason(combo, season)) // Filter for season
 }
 
+// deprecated after saving all season-specific combos in a file
 export function findCombinations(lengthMin, lengthMax) {
   // source: https://stackoverflow.com/questions/32543936/combination-with-repetition
   let results = []
@@ -108,5 +109,6 @@ export function findCombinations(lengthMin, lengthMax) {
   }
 
   results = [ ...filterSeason(results, "Autumn"), ...filterSeason(results, "Winter"), ...filterSeason(results, "Spring"), ...filterSeason(results, "Summer") ]
+  results = results.sort((a, b) => a.length - b.length)
   return removeDuplicates(results) // Return results
 }
