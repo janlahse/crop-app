@@ -76,18 +76,25 @@ function removeDuplicates(comboList) {
   return comboList
 }
 
-export function findCombinations(lengthMin, lengthMax, season) {
+export function filterSeason(comboList, season) {
+  return comboList.filter((combo) => checkSeason(combo, season)) // Filter for season
+}
+
+export function findCombinations(lengthMin, lengthMax) {
   // source: https://stackoverflow.com/questions/32543936/combination-with-repetition
   let results = []
 
   for (let l = lengthMin; l <= lengthMax; l++) {
     if (l === void 0) l = crops.length // Length of the combinations
-    let data = Array(l); // Used to store state
+    let data = Array(l) // Used to store state
 
-    (function f(pos, start) { // Recursive function
-      if (pos === l) { // End reached
-        let outputCombo = data.slice();
-        if (checkSustainable(outputCombo)) { //only adds sustainable combos
+    ;(function f(pos, start) {
+      // Recursive function
+      if (pos === l) {
+        // End reached
+        let outputCombo = data.slice()
+        if (checkSustainable(outputCombo)) {
+          //only adds sustainable combos
           results.push(outputCombo) // Add a copy of data to results
         }
         return
@@ -100,6 +107,6 @@ export function findCombinations(lengthMin, lengthMax, season) {
     })(0, 0) // Start at index 0
   }
 
-  results = results.filter((combo) => checkSeason(combo, season)) // Filter for season
+  results = [ ...filterSeason(results, "Autumn"), ...filterSeason(results, "Winter"), ...filterSeason(results, "Spring"), ...filterSeason(results, "Summer") ]
   return removeDuplicates(results) // Return results
 }
