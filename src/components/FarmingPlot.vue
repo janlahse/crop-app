@@ -15,7 +15,7 @@ defineProps(['combo'])
 }
 
 img {
-  width: 32px;
+  width: 48px;
   padding: 5px;
 }
 </style>

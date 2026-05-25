@@ -31,9 +31,9 @@ function checkSeason(combo, season) {
 
 function gcd() {
   //source: https://stackoverflow.com/questions/39764637/gcd-of-more-than-2-numbers
-  var arr = Array.prototype.slice.call(arguments)
+  let arr = Array.prototype.slice.call(arguments)
   return arr.reduce(function (a, b) {
-    if (b == 0) {
+    if (b === 0) {
       return a
     }
     return gcd(b, a % b)
@@ -42,7 +42,7 @@ function gcd() {
 
 function reduceCombo(combo) {
   let comboHelper = {}
-  combo.forEach((crop) => {
+  combo.forEach((crop) => { // auslagern
     if (Object.keys(comboHelper).includes(crop.name)) comboHelper[crop.name] += 1
     else comboHelper[crop.name] = 1
   })
