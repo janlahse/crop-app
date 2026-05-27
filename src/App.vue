@@ -89,7 +89,6 @@ button {
   transition: 0.2s;
 }
 
-button:hover,
 .active {
   color: white;
   background-color: #444;
