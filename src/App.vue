@@ -9,13 +9,17 @@ import { filterSeason } from './scripts/functions.js'
 const seasons = ref(['Autumn'])
 
 function changeSeasons(clickedSeason) {
-  /*
-     - wenn seasons.value.contains clickedSeason: entferne clickedSeasson aus seasons.value
-     - wenn nicht: füge clickedSeason hinzu
- */
+  if (seasons.value.includes(clickedSeason)) {
+    const index = seasons.value.indexOf(clickedSeason)
+    if (index > -1) {
+      seasons.value.splice(index, 1)
+    }
+  }
 
+  else {
+    seasons.value.push(clickedSeason)
+  }
 }
-
 </script>
 
 <template>
