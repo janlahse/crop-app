@@ -2,13 +2,13 @@
 import { ref } from 'vue'
 import SeasonMenu from './components/SeasonMenu.vue'
 import FarmingPlot from './components/FarmingPlot.vue'
-import { crops } from './scripts/data.js'
+//import { crops } from './scripts/data.js'
 import { allCombos } from './scripts/allCombos.js'
-import { filterSeason } from './scripts/functions.js'
+import { filterSeason, filterCrops } from './scripts/functions.js'
 import CropMenu from '@/components/CropMenu.vue'
 
 const seasons = ref(['Autumn'])
-const currentCrops = ref ([])
+const currentCrops = ref([])
 
 function changeSeasons(clickedSeason) {
   if (seasons.value.includes(clickedSeason)) {
@@ -16,14 +16,21 @@ function changeSeasons(clickedSeason) {
     if (index > -1) {
       seasons.value.splice(index, 1)
     }
-  }
-
-  else {
+  } else {
     seasons.value.push(clickedSeason)
   }
 }
 
-function changeCrops(clickedCrop) {}
+function changeCrops(clickedCrop) {
+  if (currentCrops.value.includes(clickedCrop)) {
+    const index = currentCrops.value.indexOf(clickedCrop)
+    if (index > -1) {
+      currentCrops.value.splice(index, 1)
+    }
+  } else {
+    currentCrops.value.push(clickedCrop)
+  }
+}
 </script>
 
 <template>
@@ -31,16 +38,18 @@ function changeCrops(clickedCrop) {}
     <h1>Crop App</h1>
 
     <SeasonMenu :currentSeasons="seasons" @clickSeason="(season) => changeSeasons(season)" />
-    <CropMenu :currentCrop="currentCrops" @clickCrop="(crop) => changeCrops(crop)"/>
+    <CropMenu :currentCrops="currentCrops" @clickCrop="(crop) => changeCrops(crop)" />
+
+    <hr/>
 
     <div>
       <FarmingPlot
-        v-for="(combo, index) in filterSeason(allCombos, seasons)"
+        v-for="(combo, index) in filterCrops(filterSeason(allCombos, seasons), currentCrops)"
         :key="index"
         :combo="combo"
       />
     </div>
-
+<!--
     <table class="table table-striped">
       <thead>
         <tr>
@@ -61,6 +70,7 @@ function changeCrops(clickedCrop) {}
         </tr>
       </tbody>
     </table>
+    -->
   </main>
 </template>
 
@@ -77,7 +87,10 @@ function changeCrops(clickedCrop) {}
 }
 
 main {
-  margin: 20px 40px;
+  margin: 20px 20px;
+  * {
+    color: #111;
+  }
 }
 
 main > * {
@@ -86,26 +99,24 @@ main > * {
 
 button {
   background-color: white;
-  border: 2px solid #444;
+  border: 2px solid #111;
   border-radius: 50px;
   padding: 5px 10px;
+  font-size: 1em;
   font-family: inherit;
   font-weight: bold;
   transition: 0.2s;
 }
 
-.active {
-  color: white;
-  background-color: #444;
-}
-
 table {
   border-collapse: collapse;
+  max-width: 100vw;
+  overflow-x: auto;
 }
 
 th,
 td {
-  padding: 10px;
+  padding: 5px;
   text-align: center;
   border: 1px solid grey;
 }

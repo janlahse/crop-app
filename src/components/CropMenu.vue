@@ -9,10 +9,10 @@ const props = defineProps(['currentCrops'])
     <button
       v-for="crop in crops"
       :key="crop.name"
-      class="props.currentCrops.includes(crop) && 'active'"
+      :class="props.currentCrops.includes(crop) && 'active'"
       @click="$emit('clickCrop', crop)"
     >
-      <img :src=crop.icon :alt="crop.name" />
+      <img :src="crop.icon" :alt="crop.name" />
     </button>
   </div>
 </template>
@@ -20,15 +20,24 @@ const props = defineProps(['currentCrops'])
 <style scoped>
 .plot {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  max-width: 100vw;
   > button {
     padding: 0;
+    border: none;
   }
 }
 
 img {
-  width: 30px;
-  height: 30px;
-  padding: 5px;
+  width: 50px;
+  height: 50px;
+  padding: 10px;
+  transition: 0.2s ease;
+}
+
+.active {
+  > img {
+    padding: 2px;
+  }
 }
 </style>

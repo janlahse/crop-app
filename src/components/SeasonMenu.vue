@@ -18,7 +18,17 @@ const seasons = ['Autumn', 'Winter', 'Spring', 'Summer']
 
 <style scoped>
 div {
-  display: flex;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
   gap: 15px;
+
+  @media (min-width: 500px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+.active {
+  color: white;
+  background-color: #111;
 }
 </style>
