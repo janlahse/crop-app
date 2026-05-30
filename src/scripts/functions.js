@@ -24,6 +24,22 @@ function checkSeasons(combo, seasons) {
   return isSameSeasons
 }
 
+function checkCrops(combo, currentCrops) {
+  let containsCrops = true
+
+  currentCrops.forEach((filterCrop) => {
+    let containsCrop = false
+
+    combo.forEach((crop) => {
+      if (crop.name === filterCrop.name) containsCrop = true
+    })
+
+    if (!containsCrop) containsCrops = false
+  })
+
+  return containsCrops
+}
+
 function gcd() {
   //source: https://stackoverflow.com/questions/39764637/gcd-of-more-than-2-numbers
   let arr = Array.prototype.slice.call(arguments)
@@ -80,6 +96,10 @@ function removeDuplicates(comboList) {
 
 export function filterSeason(comboList, seasons) {
   return comboList.filter((combo) => checkSeasons(combo, seasons)) // Filter for season
+}
+
+export function filterCrops(comboList, currentCrops) {
+  return comboList.filter((combo) => checkCrops(combo, currentCrops)) // Filter for crop
 }
 
 // deprecated after saving all season-specific combos in a file

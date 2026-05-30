@@ -11,11 +11,10 @@ defineProps(['combo'])
 <style scoped>
 .plot {
   display: flex;
-  gap: 5px;
 }
 
 img {
-  width: 40px;
+  width: 50px;
   padding: 5px;
 }
 </style>
