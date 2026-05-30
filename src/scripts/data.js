@@ -112,17 +112,3 @@ export const crops = [
     icon: '/crop_icons/watermelon.png',
   },
 ]
-
-export const exampleCombo = [
-  crops[1],
-  crops[1],
-  crops[1],
-  crops[1],
-  crops[1],
-  crops[1],
-  crops[2],
-  crops[2],
-  crops[2],
-  crops[2],
-]
-

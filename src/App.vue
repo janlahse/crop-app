@@ -5,8 +5,10 @@ import FarmingPlot from './components/FarmingPlot.vue'
 import { crops } from './scripts/data.js'
 import { allCombos } from './scripts/allCombos.js'
 import { filterSeason } from './scripts/functions.js'
+import CropMenu from '@/components/CropMenu.vue'
 
 const seasons = ref(['Autumn'])
+const currentCrops = ref ([])
 
 function changeSeasons(clickedSeason) {
   if (seasons.value.includes(clickedSeason)) {
@@ -20,6 +22,8 @@ function changeSeasons(clickedSeason) {
     seasons.value.push(clickedSeason)
   }
 }
+
+function changeCrops(clickedCrop) {}
 </script>
 
 <template>
@@ -27,6 +31,7 @@ function changeSeasons(clickedSeason) {
     <h1>Crop App</h1>
 
     <SeasonMenu :currentSeasons="seasons" @clickSeason="(season) => changeSeasons(season)" />
+    <CropMenu :currentCrop="currentCrops" @clickCrop="(crop) => changeCrops(crop)"/>
 
     <div>
       <FarmingPlot
