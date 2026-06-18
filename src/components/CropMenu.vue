@@ -3,7 +3,7 @@ import { crops } from './../scripts/data.js'
 
 const props = defineProps(['currentCrops'])
 </script>
-<!-- : vor class -->
+
 <template>
   <div class="plot">
     <button

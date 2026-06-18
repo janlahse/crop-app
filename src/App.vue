@@ -2,13 +2,14 @@
 import { ref } from 'vue'
 import SeasonMenu from './components/SeasonMenu.vue'
 import FarmingPlot from './components/FarmingPlot.vue'
-//import { crops } from './scripts/data.js'
 import { allCombos } from './scripts/allCombos.js'
 import { filterSeason, filterCrops } from './scripts/functions.js'
 import CropMenu from '@/components/CropMenu.vue'
+import CropTable from '@/components/CropTable.vue'
 
 const seasons = ref(['Autumn'])
 const currentCrops = ref([])
+const darkMode = ref(false)
 
 function changeSeasons(clickedSeason) {
   if (seasons.value.includes(clickedSeason)) {
@@ -40,7 +41,7 @@ function changeCrops(clickedCrop) {
     <SeasonMenu :currentSeasons="seasons" @clickSeason="(season) => changeSeasons(season)" />
     <CropMenu :currentCrops="currentCrops" @clickCrop="(crop) => changeCrops(crop)" />
 
-    <hr/>
+    <hr />
 
     <div>
       <FarmingPlot
@@ -49,28 +50,8 @@ function changeCrops(clickedCrop) {
         :combo="combo"
       />
     </div>
-<!--
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Crop</th>
-          <th>Growth</th>
-          <th>Compost</th>
-          <th>Manure</th>
-          <th>Season</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="crop in crops" :key="crop.name">
-          <td>{{ crop.name }}</td>
-          <td>{{ crop.growth }}</td>
-          <td>{{ crop.compost }}</td>
-          <td>{{ crop.manure }}</td>
-          <td>{{ crop.seasons.join(', ') }}</td>
-        </tr>
-      </tbody>
-    </table>
-    -->
+
+    <CropTable />
   </main>
 </template>
 
@@ -106,6 +87,13 @@ button {
   font-family: inherit;
   font-weight: bold;
   transition: 0.2s;
+}
+
+.button {
+  &.active {
+    color: white;
+    background-color: #111;
+  }
 }
 
 table {
