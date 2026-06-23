@@ -35,24 +35,34 @@ function changeCrops(clickedCrop) {
 </script>
 
 <template>
-  <main>
-    <h1>Crop App</h1>
+  <div :class="darkMode ? 'body dark' : 'body'">
+    <header>
+        <h1>Crop App</h1>
+        <button
+          :class="button"
+          @click="darkMode = !darkMode"
+        >
+          {{ darkMode ? "Light" : "Dark" }}
+        </button>
+      </header>
+      <main>
+        <SeasonMenu :currentSeasons="seasons" @clickSeason="(season) => changeSeasons(season)" />
 
-    <SeasonMenu :currentSeasons="seasons" @clickSeason="(season) => changeSeasons(season)" />
-    <CropMenu :currentCrops="currentCrops" @clickCrop="(crop) => changeCrops(crop)" />
+        <CropMenu :currentCrops="currentCrops" @clickCrop="(crop) => changeCrops(crop)" />
 
-    <hr />
+        <hr />
 
-    <div>
-      <FarmingPlot
-        v-for="(combo, index) in filterCrops(filterSeason(allCombos, seasons), currentCrops)"
-        :key="index"
-        :combo="combo"
-      />
-    </div>
+        <div>
+          <FarmingPlot
+            v-for="(combo, index) in filterCrops(filterSeason(allCombos, seasons), currentCrops)"
+            :key="index"
+            :combo="combo"
+          />
+        </div>
 
-    <CropTable />
-  </main>
+        <CropTable />
+      </main>
+  </div>
 </template>
 
 <style>
@@ -67,14 +77,24 @@ function changeCrops(clickedCrop) {
   font-family: 'Trebuchet MS', Arial, sans-serif;
 }
 
-main {
-  margin: 20px 20px;
-  * {
-    color: #111;
+header {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.body {
+  padding: 20px;
+  color: #111;
+
+  &.dark {
+    color: white;
+    background-color: #111;
   }
 }
 
-main > * {
+header, main > * {
   margin-bottom: 20px;
 }
 
