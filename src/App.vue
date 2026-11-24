@@ -86,11 +86,11 @@ header {
 
 .body {
   padding: 20px;
-  color: #111;
+  color: #222;
 
   &.dark {
     color: white;
-    background-color: #111;
+    background-color: #222;
   }
 }
 
@@ -100,19 +100,23 @@ header, main > * {
 
 button {
   background-color: white;
-  border: 2px solid #111;
+  border: 2px solid #222;
   border-radius: 50px;
   padding: 5px 10px;
   font-size: 1em;
   font-family: inherit;
   font-weight: bold;
   transition: 0.2s;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .button {
   &.active {
     color: white;
-    background-color: #111;
+    background-color: #222;
   }
 }
 

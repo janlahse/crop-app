@@ -28,6 +28,10 @@ const props = defineProps(['currentCrops'])
   }
 }
 
+button {
+  background-color: transparent;
+}
+
 img {
   width: 50px;
   height: 50px;
