@@ -8,7 +8,7 @@ const seasons = ['Autumn', 'Winter', 'Spring', 'Summer']
     <button
       v-for="season in seasons"
       :key="season"
-      :class="props.currentSeasons.includes(season) && 'active'"
+      :class="props.currentSeasons.includes(season) ? 'active button' : 'button'"
       @click="$emit('clickSeason', season)"
     >
       {{ season }}
@@ -25,10 +25,5 @@ div {
   @media (min-width: 500px) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
-}
-
-.active {
-  color: white;
-  background-color: #111;
 }
 </style>

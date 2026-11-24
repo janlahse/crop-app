@@ -2,13 +2,15 @@
 import { ref } from 'vue'
 import SeasonMenu from './components/SeasonMenu.vue'
 import FarmingPlot from './components/FarmingPlot.vue'
-//import { crops } from './scripts/data.js'
 import { allCombos } from './scripts/allCombos.js'
 import { filterSeason, filterCrops } from './scripts/functions.js'
 import CropMenu from '@/components/CropMenu.vue'
+import CropTable from '@/components/CropTable.vue'
 
 const seasons = ref(['Autumn'])
 const currentCrops = ref([])
+//if (localStorage.getItem("darkMode") == undefined) localStorage.setItem("darkMode", false); else  localStorage.setItem("darkMode", true);
+const darkMode = ref(localStorage.getItem("darkMode"))
 
 function changeSeasons(clickedSeason) {
   if (seasons.value.includes(clickedSeason)) {
@@ -31,47 +33,43 @@ function changeCrops(clickedCrop) {
     currentCrops.value.push(clickedCrop)
   }
 }
+
+function toggleDarkmode() {
+  darkMode.value = !darkMode.value
+  if (localStorage.getItem("darkMode")) localStorage.removeItem("darkMode")
+  else localStorage.setItem("darkMode", true)
+}
 </script>
 
 <template>
-  <main>
-    <h1>Crop App</h1>
+  <div :class="darkMode ? 'body dark' : 'body'">
+    <header>
+        <h1>Crop App</h1>
+        <button
+          class="button"
+          @click="toggleDarkmode"
+        >
+          {{ darkMode ? "Light" : "Dark" }}
+        </button>
+      </header>
+      <main>
+        <SeasonMenu :currentSeasons="seasons" @clickSeason="(season) => changeSeasons(season)" />
 
-    <SeasonMenu :currentSeasons="seasons" @clickSeason="(season) => changeSeasons(season)" />
-    <CropMenu :currentCrops="currentCrops" @clickCrop="(crop) => changeCrops(crop)" />
+        <CropMenu :currentCrops="currentCrops" @clickCrop="(crop) => changeCrops(crop)" />
 
-    <hr/>
+        <hr />
 
-    <div>
-      <FarmingPlot
-        v-for="(combo, index) in filterCrops(filterSeason(allCombos, seasons), currentCrops)"
-        :key="index"
-        :combo="combo"
-      />
-    </div>
-<!--
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Crop</th>
-          <th>Growth</th>
-          <th>Compost</th>
-          <th>Manure</th>
-          <th>Season</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="crop in crops" :key="crop.name">
-          <td>{{ crop.name }}</td>
-          <td>{{ crop.growth }}</td>
-          <td>{{ crop.compost }}</td>
-          <td>{{ crop.manure }}</td>
-          <td>{{ crop.seasons.join(', ') }}</td>
-        </tr>
-      </tbody>
-    </table>
-    -->
-  </main>
+        <div>
+          <FarmingPlot
+            v-for="(combo, index) in filterCrops(filterSeason(allCombos, seasons), currentCrops)"
+            :key="index"
+            :combo="combo"
+          />
+        </div>
+
+        <CropTable />
+      </main>
+  </div>
 </template>
 
 <style>
@@ -86,27 +84,59 @@ function changeCrops(clickedCrop) {
   font-family: 'Trebuchet MS', Arial, sans-serif;
 }
 
-main {
-  margin: 20px 20px;
-  * {
-    color: #111;
+header {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.body {
+  padding: 20px;
+  color: #222;
+
+  &.dark {
+    color: white;
+    background-color: #222;
   }
 }
 
-main > * {
+header, main > * {
   margin-bottom: 20px;
 }
 
-button {
+.button {
   background-color: white;
-  border: 2px solid #111;
+  border: 2px solid #222;
   border-radius: 50px;
   padding: 5px 10px;
   font-size: 1em;
   font-family: inherit;
   font-weight: bold;
   transition: 0.2s;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
+
+.button {
+  &.active {
+    color: white;
+    background-color: #222;
+  }
+}
+
+.body.dark .button {
+  color: white;
+  background-color: #222;
+
+  &.active {
+    color: #222;
+    background-color: white;
+  }
+}
+
 
 table {
   border-collapse: collapse;
