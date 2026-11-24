@@ -30,6 +30,7 @@ const props = defineProps(['currentCrops'])
 
 button {
   background-color: transparent;
+  cursor: pointer;
 }
 
 img {

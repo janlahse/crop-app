@@ -9,7 +9,8 @@ import CropTable from '@/components/CropTable.vue'
 
 const seasons = ref(['Autumn'])
 const currentCrops = ref([])
-const darkMode = ref(false)
+//if (localStorage.getItem("darkMode") == undefined) localStorage.setItem("darkMode", false); else  localStorage.setItem("darkMode", true);
+const darkMode = ref(localStorage.getItem("darkMode"))
 
 function changeSeasons(clickedSeason) {
   if (seasons.value.includes(clickedSeason)) {
@@ -32,6 +33,12 @@ function changeCrops(clickedCrop) {
     currentCrops.value.push(clickedCrop)
   }
 }
+
+function toggleDarkmode() {
+  darkMode.value = !darkMode.value
+  if (localStorage.getItem("darkMode")) localStorage.removeItem("darkMode")
+  else localStorage.setItem("darkMode", true)
+}
 </script>
 
 <template>
@@ -39,8 +46,8 @@ function changeCrops(clickedCrop) {
     <header>
         <h1>Crop App</h1>
         <button
-          :class="button"
-          @click="darkMode = !darkMode"
+          class="button"
+          @click="toggleDarkmode"
         >
           {{ darkMode ? "Light" : "Dark" }}
         </button>
@@ -98,7 +105,7 @@ header, main > * {
   margin-bottom: 20px;
 }
 
-button {
+.button {
   background-color: white;
   border: 2px solid #222;
   border-radius: 50px;
@@ -119,6 +126,17 @@ button {
     background-color: #222;
   }
 }
+
+.body.dark .button {
+  color: white;
+  background-color: #222;
+
+  &.active {
+    color: #222;
+    background-color: white;
+  }
+}
+
 
 table {
   border-collapse: collapse;
